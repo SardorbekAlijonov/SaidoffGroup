@@ -1,28 +1,19 @@
 from django.urls import path
-from main_app.views import (
-    WhyusListAPIView,
-    PartnersListAPIView,
-    TeamsListAPIView,
-    CertificatesListCreateAPIView,
-    FAQCategoryListCreateAPIView,
-    FAQListAPIView,
-    FeedbackListAPIView,
-    SubscriberListAPIView
-)
+from main_app import views
 
 urlpatterns = [
-    path('whyus/', WhyusListAPIView.as_view(), name='whyus-list'),
-    path('partners/', PartnersListAPIView.as_view(), name='partners-list'),
+    path('whyus/', views.WhyusListAPIView.as_view(), name='whyus-list'),
+    path('partners/', views.PartnersListAPIView.as_view(), name='partners-list'),
 
-    path('teams/<int:pk>/', TeamsListAPIView.as_view(), name='teams-detail'),
+    path('teams/', views.TeamsListAPIView.as_view(), name='teams-detail'),
 
-    path('certificates/', CertificatesListCreateAPIView.as_view(), name='certificates-list'),
+    path('certificates/', views.CertificatesListAPIView.as_view(), name='certificates-list'),
 
-    path('faq-categories/', FAQCategoryListCreateAPIView.as_view(), name='faqcategory-list-create'),
+    path('faq-categories/', views.FAQCategoryListAPIView.as_view(), name='faqcategory-list-create'),
 
-    path('faqs/<int:pk>/', FAQListAPIView.as_view(), name='faq-detail'),
+    path('faqs/', views.FAQListAPIView.as_view(), name='faq-detail'),
 
-    path('feedback/', FeedbackListAPIView.as_view(), name='feedback-list'),
+    path('feedback/', views.FeedbackListAPIView.as_view(), name='feedback-list'),
 
-    path('subscribers/<int:pk>/', SubscriberListAPIView.as_view(), name='subscriber-detail'),
+    path('subscribers/', views.SubscriberListAPIView.as_view(), name='subscriber-detail'),
 ]

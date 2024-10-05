@@ -16,9 +16,27 @@ class ServiceDescriptionSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = [
+            'name',
+            'phone_number',
+            'message',
+            'service',
+        ]
+    extra_kwargs = {
+        'message': {'allow_null': True, 'allow_blank': True}
+    }
+
+    def create(self, validated_data):
+        order = Order.objects.create(
+            name=validated_data['name'],
+            phone_number=validated_data['phone_number'],
+            message=validated_data['message'],
+            service=validated_data['service']
+        )
+        return order
 
 
 class TagsSerializer(serializers.ModelSerializer):

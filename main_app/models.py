@@ -43,7 +43,6 @@ class FAQ_Category(models.Model):
     title = models.CharField(max_length=50, null=False)
 
 
-
 class FAQ(models.Model):
     question = models.TextField()
     answer = models.TextField()

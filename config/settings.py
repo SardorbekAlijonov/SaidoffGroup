@@ -16,17 +16,16 @@ import os
 
 # Initialize environment variables
 env = environ.Env()
-environ.Env.read_env()  # Reads the .env file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7-728$3o7+b&l#=c@)di#sptkpha8a4h(wtdch8fn$*ahk2i^d'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +37,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'service_app',
     'rest_framework',
     'drf_yasg',
-
-
 ]
 
 MIDDLEWARE = [
@@ -85,7 +83,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 
 DATABASES = {
     'default': {

@@ -1,9 +1,9 @@
-from django.shortcuts import render
 from main_app.models import WhyUs, Partners, Teams, Certificates, FAQ, Feedback, FAQ_Category, Subscriber
 from main_app.serializer import (
     WhyusSerializer, PartnersSerializer, TeamsSerializer, CertificatesSerializer,
     FAQSerializer, FeedbackSerializer, FAQCategorySerializer, SubscriberSerializer
 )
+
 from rest_framework import generics
 
 
@@ -17,27 +17,25 @@ class PartnersListAPIView(generics.ListAPIView):
     serializer_class = PartnersSerializer
 
 
-
-class TeamsListAPIView(generics.RetrieveUpdateDestroyAPIView):
+class TeamsListAPIView(generics.ListAPIView):
     queryset = Teams.objects.all()
     serializer_class = TeamsSerializer
 
 
 # Certificates Views
-class CertificatesListCreateAPIView(generics.ListCreateAPIView):
+class CertificatesListAPIView(generics.ListAPIView):
     queryset = Certificates.objects.all()
     serializer_class = CertificatesSerializer
 
 
-class FAQCategoryListCreateAPIView(generics.ListCreateAPIView):
+class FAQCategoryListAPIView(generics.ListAPIView):
     queryset = FAQ_Category.objects.all()
     serializer_class = FAQCategorySerializer
 
 
-class FAQListAPIView(generics.RetrieveUpdateDestroyAPIView):
+class FAQListAPIView(generics.ListAPIView):
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
-
 
 
 class FeedbackListAPIView(generics.ListAPIView):
@@ -45,7 +43,6 @@ class FeedbackListAPIView(generics.ListAPIView):
     serializer_class = FeedbackSerializer
 
 
-
-class SubscriberListAPIView(generics.RetrieveUpdateDestroyAPIView):
+class SubscriberListAPIView(generics.ListAPIView):
     queryset = Subscriber.objects.all()
     serializer_class = SubscriberSerializer
